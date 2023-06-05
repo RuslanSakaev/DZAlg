@@ -1,13 +1,13 @@
 import java.util.LinkedList;
 
-public class HashMapCustom<K, V> {
-    private static final int DEFAULT_CAPACITY = 16;
-    private static final double DEFAULT_LOAD_FACTOR = 0.75;
+public class Mapa<K, V> {
+    private static final int volume = 16;
+    private static final double tableLimit = 0.75;
     private LinkedList<Node<K, V>>[] table;
     private int size;
 
-    public HashMapCustom() {
-        table = new LinkedList[DEFAULT_CAPACITY];
+    public Mapa() {
+        table = new LinkedList[volume];
         size = 0;
     }
 
@@ -37,7 +37,7 @@ public class HashMapCustom<K, V> {
         size++;
 
         // Проверка загрузки и расширение таблицы при необходимости
-        if ((double) size / table.length >= DEFAULT_LOAD_FACTOR) {
+        if ((double) size / table.length >= tableLimit) {
             resizeTable();
         }
 
@@ -171,7 +171,7 @@ public class HashMapCustom<K, V> {
         size++;
 
         // Проверка загрузки и расширение таблицы при необходимости
-        if ((double) size / table.length >= DEFAULT_LOAD_FACTOR) {
+        if ((double) size / table.length >= tableLimit) {
             resizeTable();
         }
 
@@ -262,15 +262,5 @@ public class HashMapCustom<K, V> {
         }
 
         table = newTable;
-    }
-
-    private static class Node<K, V> {
-        private K key;
-        private V value;
-
-        public Node(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
     }
 }
